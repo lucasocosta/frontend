@@ -1,0 +1,59 @@
+<button class="btn btn-outline" (click)="basic = true">Adicionar</button>
+
+<clr-datagrid>
+    <clr-dg-column>ID</clr-dg-column>
+    <clr-dg-column>Nome</clr-dg-column>
+    <clr-dg-column>Nome Fantasia</clr-dg-column>
+    <clr-dg-column>CNPJ</clr-dg-column>
+    <clr-dg-column>Id endereco</clr-dg-column>
+    <clr-dg-column>Avaliacao</clr-dg-column>
+    <clr-dg-column>email</clr-dg-column>
+
+    <clr-dg-row *ngFor="let cinema of cinemas">
+        <clr-dg-cell>{{cinema.idcinemas}}</clr-dg-cell>
+        <clr-dg-cell>{{cinema.nome}}</clr-dg-cell>
+        <clr-dg-cell>{{cinema.nome_fantasia}}</clr-dg-cell>
+        <clr-dg-cell>{{cinema.cnpj}}</clr-dg-cell>
+        <clr-dg-cell>{{cinema.idendereco}}</clr-dg-cell>
+        <clr-dg-cell>{{cinema.avaliacao}}</clr-dg-cell>
+        <clr-dg-cell>{{cinema.email}}</clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>{{cinemas.length}} cinemas</clr-dg-footer>
+</clr-datagrid>
+
+<clr-modal [(clrModalOpen)]="basic" [clrModalSize]="'md'">
+    <h3 class="modal-title">Adicionar cinema</h3>
+    <div class="modal-body">
+        <form clrForm>
+            <clr-input-container>
+                <label>Nome</label>
+                <input clrInput placeholder="Nome" name="nome" [(ngModel)]="novoModal.nome" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>Nome Fantasia</label>
+                <input clrInput placeholder="Nome Fantasia" name="nome_fantasia" [(ngModel)]="novoModal.nome_fantasia" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>CNPJ</label>
+                <input clrInput placeholder="CNPJ" name="cnpj" [(ngModel)]="novoModal.cnpj" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>Endereço</label>
+                <input clrInput placeholder="Endereço" name="idendereco" [(ngModel)]="novoModal.idendereco" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>Avaliação</label>
+                <input clrInput placeholder="Avaliação" name="avaliacao" [(ngModel)]="novoModal.avaliacao" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>E-mail</label>
+                <input clrInput placeholder="E-mail" name="email" [(ngModel)]="novoModal.email" />
+            </clr-input-container>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="cancelar()">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="salvar()">Salvar</button>
+    </div>
+</clr-modal>
