@@ -1,4 +1,4 @@
-<button class="btn btn-outline" (click)="basic = true">Adicionar</button>
+<button class="btn btn-outline" (click)="adicionarNovo()">Adicionar</button>
 
 <clr-datagrid>
     <clr-dg-column>ID</clr-dg-column>
@@ -10,6 +10,11 @@
     <clr-dg-column>email</clr-dg-column>
 
     <clr-dg-row *ngFor="let cinema of cinemas">
+    <clr-dg-action-overflow>
+        <button class="action-item" (click)="editar(cinema)">Editar</button>
+        <button class="action-item" (click)="remover(cinema)">Remover</button>
+    </clr-dg-action-overflow>
+        
         <clr-dg-cell>{{cinema.idcinemas}}</clr-dg-cell>
         <clr-dg-cell>{{cinema.nome}}</clr-dg-cell>
         <clr-dg-cell>{{cinema.nome_fantasia}}</clr-dg-cell>
