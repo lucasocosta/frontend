@@ -29,9 +29,21 @@ export class CinemaComponent implements OnInit {
     //this.service.getCinemas().subscribe(cinemas => this.cinemas = cinemas);
     this.novoModal = new Cinema();
     this.opcaoModal=-1;
-    console.log(this.cinemas)
+    //console.log(this.cinemas)
     //this.cinemas.forEach(this.recuperaEndereco);
-    console.log(this.cinemas);
+    //console.log(this.cinemas);
+  }
+
+  pesquisarCep(cep: string)
+  {
+    console.log(cep);
+    this.service.getEnderecoCep(cep).subscribe(res => {
+      this.novoModal.endereco.logradouro=res.logradouro;
+      this.novoModal.endereco.cep=res.cep;
+      this.novoModal.endereco.uf=res.uf;
+      this.novoModal.endereco.bairro=res.bairro;
+      this.novoModal.endereco.cidade=res.cidade;
+    });
   }
 
   recuperaEndereco()
@@ -41,7 +53,7 @@ export class CinemaComponent implements OnInit {
         this.service.getEndereco(this.cinemas[i].idendereco).subscribe(res =>
           {
             this.cinemas[i].endereco=res;
-            console.log(this.cinemas[i].endereco);
+            //console.log(this.cinemas[i].endereco);
           });
       }
 

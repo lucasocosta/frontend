@@ -23,9 +23,10 @@
         <clr-dg-cell>{{cinema.avaliacao}}</clr-dg-cell>
         <clr-dg-cell>{{cinema.email}}</clr-dg-cell>
         <clr-dg-row-detail *clrIfExpanded class="action-item" (click)="recuperaEndereco(cinema)">
-            Endereço: {{cinema.endereco.logradouro}}, {{cinema.endereco.numero}}, Bairro {{cinema.endereco.bairro}} 
-            Cidade: {{cinema.endereco.cidade}}, {{cinema.endereco.uf}}, CEP: {{cinema.endereco.cep}}. 
-            Complemento: {{cinema.endereco.complemento}}
+            Endereço: {{cinema.endereco.logradouro}}, {{cinema.endereco.numero}}, 
+            Bairro {{cinema.endereco.bairro}}, 
+            {{cinema.endereco.cidade}}, {{cinema.endereco.uf}}<br>CEP: {{cinema.endereco.cep}}. 
+            <br>Complemento: {{cinema.endereco.complemento}}
         </clr-dg-row-detail>
     </clr-dg-row>
 
@@ -57,6 +58,7 @@
                 <label>CEP</label>
                 <input clrInput placeholder="CEP" name="cep" [(ngModel)]="novoModal.endereco.cep" />
             </clr-input-container>
+            <button type="button" class="btn btn-outline" (click)="pesquisarCep(novoModal.endereco.cep)">Pesquisar CEP</button>
             <clr-input-container>
                 <label>UF</label>
                 <input clrInput placeholder="UF" name="uf" [(ngModel)]="novoModal.endereco.uf" />
