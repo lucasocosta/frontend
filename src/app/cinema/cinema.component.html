@@ -5,7 +5,7 @@
     <clr-dg-column>Nome</clr-dg-column>
     <clr-dg-column>Nome Fantasia</clr-dg-column>
     <clr-dg-column>CNPJ</clr-dg-column>
-    <clr-dg-column>Id endereco</clr-dg-column>
+    <!--<clr-dg-column>Id endereco</clr-dg-column>-->
     <clr-dg-column>Avaliacao</clr-dg-column>
     <clr-dg-column>email</clr-dg-column>
 
@@ -19,9 +19,14 @@
         <clr-dg-cell>{{cinema.nome}}</clr-dg-cell>
         <clr-dg-cell>{{cinema.nome_fantasia}}</clr-dg-cell>
         <clr-dg-cell>{{cinema.cnpj}}</clr-dg-cell>
-        <clr-dg-cell>{{cinema.idendereco}}</clr-dg-cell>
+        <!-- <clr-dg-cell>{{cinema.idendereco}}</clr-dg-cell> -->
         <clr-dg-cell>{{cinema.avaliacao}}</clr-dg-cell>
         <clr-dg-cell>{{cinema.email}}</clr-dg-cell>
+        <clr-dg-row-detail *clrIfExpanded class="action-item" (click)="recuperaEndereco(cinema)">
+            Endereço: {{cinema.endereco.logradouro}}, {{cinema.endereco.numero}}, Bairro {{cinema.endereco.bairro}} 
+            Cidade: {{cinema.endereco.cidade}}, {{cinema.endereco.uf}}, CEP: {{cinema.endereco.cep}} 
+            Complemento: {{cinema.endereco.complemento}}
+        </clr-dg-row-detail>
     </clr-dg-row>
 
     <clr-dg-footer>{{cinemas.length}} cinemas</clr-dg-footer>
@@ -43,10 +48,48 @@
                 <label>CNPJ</label>
                 <input clrInput placeholder="CNPJ" name="cnpj" [(ngModel)]="novoModal.cnpj" />
             </clr-input-container>
-            <clr-input-container>
+            <!--<clr-input-container>
                 <label>Endereço</label>
                 <input clrInput placeholder="Endereço" name="idendereco" [(ngModel)]="novoModal.idendereco" />
             </clr-input-container>
+            -->
+            <clr-input-container>
+                <label>CEP</label>
+                <input clrInput placeholder="CEP" name="cep" [(ngModel)]="novoModal.endereco.cep" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>UF</label>
+                <input clrInput placeholder="UF" name="uf" [(ngModel)]="novoModal.endereco.uf" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>Cidade</label>
+                <input clrInput placeholder="Cidade" name="cidade" [(ngModel)]="novoModal.endereco.cidade" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>Bairro</label>
+                <input clrInput placeholder="Bairro" name="bairro" [(ngModel)]="novoModal.endereco.bairro" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>Logradouro</label>
+                <input clrInput placeholder="Logradouro" name="logradouro" [(ngModel)]="novoModal.endereco.logradouro" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>Número</label>
+                <input clrInput placeholder="Número" name="numero" [(ngModel)]="novoModal.endereco.numero" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>Complemento</label>
+                <input clrInput placeholder="Complemento" name="complemento" [(ngModel)]="novoModal.endereco.complemento" />
+            </clr-input-container>
+
+
+
+
+
+
+
+
+
             <clr-input-container>
                 <label>Avaliação</label>
                 <input clrInput placeholder="Avaliação" name="avaliacao" [(ngModel)]="novoModal.avaliacao" />

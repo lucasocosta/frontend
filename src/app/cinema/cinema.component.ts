@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CinemaService } from '../cinema.service';
-import { Observable } from 'rxjs';
+import { ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-cinema',
@@ -16,16 +16,41 @@ export class CinemaComponent implements OnInit {
   private cinemas = new Array<Cinema>();
   //private cinemas: Cinema[];
 
-  constructor(private service: CinemaService) { }
+  constructor(
+    private service: CinemaService,
+    private serviceRota: ActivatedRoute) { }
 
   ngOnInit() {
+    
+    this.serviceRota.data.subscribe((data: {cinemas: Cinema[]}) => {
+      this.cinemas = data.cinemas;
+      this.recuperaEndereco();
+    });
+    //this.service.getCinemas().subscribe(cinemas => this.cinemas = cinemas);
     this.novoModal = new Cinema();
-    this.service.getCinemas().subscribe(cinemas => this.cinemas = cinemas);
     this.opcaoModal=-1;
+    console.log(this.cinemas)
+    //this.cinemas.forEach(this.recuperaEndereco);
+    console.log(this.cinemas);
+  }
+
+  recuperaEndereco()
+  {
+    for(let i=0;i<this.cinemas.length;i++)
+      {
+        this.service.getEndereco(this.cinemas[i].idendereco).subscribe(res =>
+          {
+            this.cinemas[i].endereco=res;
+            console.log(this.cinemas[i].endereco);
+          });
+      }
+
+    
   }
 
   adicionarNovo()
   {
+    //this.recuperaEndereco(this.cinemas[0]);
     this.novoModal= new Cinema();
     this.basic = true;
     this.opcaoModal=1;
@@ -55,6 +80,9 @@ export class CinemaComponent implements OnInit {
   salvar() {
     if(this.opcaoModal==1)
     {
+      this.service.adicionarEndereco(this.novoModal.endereco).subscribe(res => {
+        this.novoModal.endereco.idendereco = res.insertId;
+      });    
       this.service.adicionar(this.novoModal).subscribe(res => {
         this.novoModal.idcinemas = res.insertId;
         this.cinemas.push(this.novoModal);
@@ -81,13 +109,14 @@ export class CinemaComponent implements OnInit {
 }
 
 export class Cinema {
-  idcinemas: number
+  idcinemas: number;
   nome: string;
   nome_fantasia: string;
   cnpj: string;
   idendereco: number;
   avaliacao: number;
   email: string;
+  endereco: Endereco;
 
   constructor() {
     this.nome = '';
@@ -96,5 +125,28 @@ export class Cinema {
     this.avaliacao = 0;
     this.email = '';
     this.idendereco = null;
+    this.endereco = new Endereco();
+  }
+}
+
+export class Endereco {
+  idendereco: number;
+  cep: string;
+  uf: string;
+  cidade: string;
+  bairro: string;
+  logradouro: string;
+  numero: number;
+  complemento: string;
+
+  constructor() {
+    this.idendereco=null;
+    this.cep = '';
+    this.uf = '';
+    this.cidade = '';
+    this.bairro = '';
+    this.logradouro = '';
+    this.numero = null;
+    this.complemento = '';
   }
 }
