@@ -73,6 +73,7 @@ export class CinemaComponent implements OnInit {
     this.service.remover(cinema.idcinemas).subscribe(res =>
     {
       let cinemaIdx = this.cinemas.indexOf(cinema);
+      this.service.removerEndereco(this.cinemas[cinemaIdx].idendereco).subscribe();
       this.cinemas.splice(cinemaIdx,1);
     });
   }
@@ -82,11 +83,15 @@ export class CinemaComponent implements OnInit {
     {
       this.service.adicionarEndereco(this.novoModal.endereco).subscribe(res => {
         this.novoModal.endereco.idendereco = res.insertId;
-      });    
-      this.service.adicionar(this.novoModal).subscribe(res => {
-        this.novoModal.idcinemas = res.insertId;
-        this.cinemas.push(this.novoModal);
-      });    
+        this.novoModal.idendereco=res.insertId;
+
+        this.service.adicionar(this.novoModal).subscribe(res => {
+          this.novoModal.idcinemas = res.insertId;
+          this.cinemas.push(this.novoModal);
+        });    
+
+      });
+
       this.basic = false;
   
     }
@@ -95,7 +100,13 @@ export class CinemaComponent implements OnInit {
        this.service.edit(this.novoModal).subscribe(res => {
         let cinemaIdx = this.cinemas.findIndex(c => c.idcinemas == this.novoModal.idcinemas)
         this.cinemas[cinemaIdx] = this.novoModal;
+        //console.log(this.cinemas[cinemaIdx].endereco);
+        
+        this.service.editEndereco(this.cinemas[cinemaIdx].endereco).subscribe();
        });
+       
+       
+       
        this.basic = false;
     }
     

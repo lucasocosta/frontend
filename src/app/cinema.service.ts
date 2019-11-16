@@ -29,10 +29,7 @@ export class CinemaService {
 
   adicionar(cinema: Cinema): Observable<any>
   {
-    var endereco = new Endereco();
-    endereco = cinema.endereco;
-    delete cinema.endereco;
-    
+    const endereco: Endereco = Object.assign(cinema.endereco)
     var ans=this.http.post("http://localhost:3000/cinema", cinema);
     cinema.endereco=endereco;
     return ans;
@@ -48,8 +45,20 @@ export class CinemaService {
     return this.http.delete("http://localhost:3000/cinema/" + idcinemas);
   }
 
+  removerEndereco(idendereco: number): Observable<any>
+  {
+    return this.http.delete("http://localhost:3000/endereco/" + idendereco);
+  }
   edit(cinema: Cinema): Observable<any>
   {
-    return this.http.put("http://localhost:3000/cinema/" + cinema.idcinemas,cinema);
+    const endereco: Endereco = Object.assign(cinema.endereco)
+    var ans=this.http.put("http://localhost:3000/cinema/" + cinema.idcinemas,cinema);
+    cinema.endereco=endereco;
+    return ans;
+  }
+
+  editEndereco(endereco: Endereco): Observable<any>
+  {
+    return this.http.put("http://localhost:3000/endereco/" + endereco.idendereco,endereco);
   }
 }
