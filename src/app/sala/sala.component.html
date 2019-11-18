@@ -1,1 +1,62 @@
-<p>sala works!</p>
+
+<clr-select-container>
+    <label>Escolha o Cinema</label>
+    <select clrSelect name="options" (change)="selecionar()" [(ngModel)]="options">
+    <option  *ngFor="let cinema of cinemas" value= {{cinema.idcinemas}} >{{cinema.nome_fantasia}}</option>
+    </select>
+</clr-select-container>
+
+<br><br>
+
+<button class="btn btn-outline" (click)="adicionarNovo()">Adicionar</button>
+
+<clr-datagrid>
+    <clr-dg-column>ID</clr-dg-column>
+    <clr-dg-column>Nome</clr-dg-column>
+    <clr-dg-column>ID Cinema</clr-dg-column>
+    <clr-dg-column>Fileiras</clr-dg-column>
+    <clr-dg-column>Poltronas</clr-dg-column>
+
+    <clr-dg-row *ngFor="let sala of salas">
+    <clr-dg-action-overflow>
+        <button class="action-item" (click)="editar(sala)">Editar</button>
+        <button class="action-item" (click)="remover(sala)">Remover</button>
+    </clr-dg-action-overflow>
+        
+        <clr-dg-cell>{{sala.idsala}}</clr-dg-cell>
+        <clr-dg-cell>{{sala.nome}}</clr-dg-cell>
+        <clr-dg-cell>{{sala.idcinema}}</clr-dg-cell>
+        <clr-dg-cell>{{sala.fileiras}}</clr-dg-cell>
+        <clr-dg-cell>{{sala.poltronas}}</clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>{{salas.length}} salas</clr-dg-footer>
+</clr-datagrid>
+
+<clr-modal [(clrModalOpen)]="basic" [clrModalSize]="'md'">
+    <h3 class="modal-title">Adicionar cinema</h3>
+    <div class="modal-body">
+        <form clrForm>
+            <clr-input-container>
+                <label>Nome</label>
+                <input clrInput placeholder="Nome" name="nome" [(ngModel)]="novoModal.nome" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>ID Cinema</label>
+                <input clrInput placeholder="idcinema" name="idcinema" [(ngModel)]="novoModal.idcinema" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>Fileiras</label>
+                <input clrInput placeholder="Fileiras" name="fileiras" [(ngModel)]="novoModal.fileiras" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>Poltronas</label>
+                <input clrInput placeholder="Poltronas" name="poltronas" [(ngModel)]="novoModal.poltronas" />
+            </clr-input-container>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="cancelar()">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="salvar()">Salvar</button>
+    </div>
+</clr-modal>

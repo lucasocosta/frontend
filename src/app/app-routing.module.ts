@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'cinemas', component: CinemaComponent, resolve: {cinemas: CinemaResolverService} },
   { path: 'usuarios', component: UsuarioComponent, resolve: {usuarios: UsuarioResolverService}},
-  { path: 'salas', component: SalaComponent }
+  { path: 'salas', component: SalaComponent, resolve: {cinemas: CinemaResolverService} }
 ];
 
 @NgModule({
