@@ -14,7 +14,7 @@ export class CinemaResolverService implements Resolve<Cinema[]> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Cinema[]> | Promise<Cinema[]> | Cinema[]
   {
-    //console.log("Chegou");
+    console.log("Chegou");
     return this.service.getCinemas();
   }
 

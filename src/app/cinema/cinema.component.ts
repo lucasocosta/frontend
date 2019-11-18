@@ -21,7 +21,7 @@ export class CinemaComponent implements OnInit {
     private serviceRota: ActivatedRoute) { }
 
   ngOnInit() {
-    
+    this.cinemas=[];
     this.serviceRota.data.subscribe((data: {cinemas: Cinema[]}) => {
       this.cinemas = data.cinemas;
       this.recuperaEndereco();
@@ -29,7 +29,7 @@ export class CinemaComponent implements OnInit {
     //this.service.getCinemas().subscribe(cinemas => this.cinemas = cinemas);
     this.novoModal = new Cinema();
     this.opcaoModal=-1;
-    //console.log(this.cinemas)
+    console.log(this.cinemas);
     //this.cinemas.forEach(this.recuperaEndereco);
     //console.log(this.cinemas);
   }

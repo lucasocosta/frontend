@@ -1,1 +1,114 @@
-<p>usuario works!</p>
+<button class="btn btn-outline" (click)="adicionarNovo()">Adicionar</button>
+
+<clr-datagrid>
+    <clr-dg-column>ID</clr-dg-column>
+    <clr-dg-column>Nome</clr-dg-column>
+    <clr-dg-column>Senha</clr-dg-column>
+    <clr-dg-column>CPF</clr-dg-column>
+    <!--<clr-dg-column>Id endereco</clr-dg-column>-->
+    <clr-dg-column>Tipo</clr-dg-column>
+    <clr-dg-column>Permissão</clr-dg-column>
+    <clr-dg-column>Data de Nascimento</clr-dg-column>
+    <clr-dg-column>email</clr-dg-column>
+
+    <clr-dg-row *ngFor="let usuario of usuarios">
+    <clr-dg-action-overflow>
+        <button class="action-item" (click)="editar(usuario)">Editar</button>
+        <button class="action-item" (click)="remover(usuario)">Remover</button>
+    </clr-dg-action-overflow>
+        
+        <clr-dg-cell>{{usuario.idusuario}}</clr-dg-cell>
+        <clr-dg-cell>{{usuario.nome}}</clr-dg-cell>
+        <clr-dg-cell>{{usuario.senha}}</clr-dg-cell>
+        <clr-dg-cell>{{usuario.cpf}}</clr-dg-cell>
+        <!-- <clr-dg-cell>{{usuario.idendereco}}</clr-dg-cell> -->
+        <clr-dg-cell>{{usuario.tipo}}</clr-dg-cell>
+        <clr-dg-cell>{{usuario.permissao}}</clr-dg-cell>
+        <clr-dg-cell>{{usuario.data_nasc | date}}</clr-dg-cell>
+        <clr-dg-cell>{{usuario.email}}</clr-dg-cell>
+        <clr-dg-row-detail *clrIfExpanded class="action-item" (click)="recuperaEndereco(usuario)">
+            Endereço: {{usuario.endereco.logradouro}}, {{usuario.endereco.numero}}, 
+            Bairro {{usuario.endereco.bairro}}, 
+            {{usuario.endereco.cidade}}, {{usuario.endereco.uf}}<br>CEP: {{usuario.endereco.cep}}. 
+            <br>Complemento: {{usuario.endereco.complemento}}
+        </clr-dg-row-detail>
+    </clr-dg-row>
+
+    <clr-dg-footer>{{usuarios.length}} usuarios</clr-dg-footer>
+</clr-datagrid>
+
+<clr-modal [(clrModalOpen)]="basic" [clrModalSize]="'md'">
+    <h3 class="modal-title">Adicionar usuario</h3>
+    <div class="modal-body">
+        <form clrForm>
+            <clr-input-container>
+                <label>Nome</label>
+                <input clrInput placeholder="Nome" name="nome" [(ngModel)]="novoModal.nome" />
+            </clr-input-container>
+            <clr-password-container>
+                <label>Senha</label>
+                <input clrPassword placeholder="Senha" name="senha" [(ngModel)]="novoModal.senha" />
+            </clr-password-container>
+            <clr-input-container>
+                <label>CPF</label>
+                <input clrInput placeholder="CPF" name="cpf" [(ngModel)]="novoModal.cpf" />
+            </clr-input-container>
+            <clr-date-container>
+                <label>Data</label>
+                <input type="date" [(clrDate)]="novoModal.data_nasc" />
+            </clr-date-container>
+            <!--<clr-input-container>
+                <label>Endereço</label>
+                <input clrInput placeholder="Endereço" name="idendereco" [(ngModel)]="novoModal.idendereco" />
+            </clr-input-container>
+            -->
+            <clr-input-container>
+                <label>CEP</label>
+                <input clrInput placeholder="CEP" name="cep" [(ngModel)]="novoModal.endereco.cep" />
+            </clr-input-container>
+            <button type="button" class="btn btn-outline" (click)="pesquisarCep(novoModal.endereco.cep)">Pesquisar CEP</button>
+            <clr-input-container>
+                <label>UF</label>
+                <input clrInput placeholder="UF" name="uf" [(ngModel)]="novoModal.endereco.uf" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>Cidade</label>
+                <input clrInput placeholder="Cidade" name="cidade" [(ngModel)]="novoModal.endereco.cidade" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>Bairro</label>
+                <input clrInput placeholder="Bairro" name="bairro" [(ngModel)]="novoModal.endereco.bairro" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>Logradouro</label>
+                <input clrInput placeholder="Logradouro" name="logradouro" [(ngModel)]="novoModal.endereco.logradouro" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>Número</label>
+                <input clrInput placeholder="Número" name="numero" [(ngModel)]="novoModal.endereco.numero" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>Complemento</label>
+                <input clrInput placeholder="Complemento" name="complemento" [(ngModel)]="novoModal.endereco.complemento" />
+            </clr-input-container>
+
+            <clr-input-container>
+                <label>Tipo</label>
+                <input clrInput placeholder="Tipo" name="tipo" [(ngModel)]="novoModal.tipo" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>Permissão</label>
+                <input clrInput placeholder="Permissão" name="permissao" [(ngModel)]="novoModal.permissao" />
+            </clr-input-container>
+
+            <clr-input-container>
+                <label>E-mail</label>
+                <input clrInput placeholder="E-mail" name="email" [(ngModel)]="novoModal.email" />
+            </clr-input-container>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="cancelar()">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="salvar()">Salvar</button>
+    </div>
+</clr-modal>
