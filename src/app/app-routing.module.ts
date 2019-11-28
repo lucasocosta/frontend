@@ -6,14 +6,20 @@ import { CinemaResolverService } from './cinema/cinema-resolver.service';
 import { HomeComponent } from './home/home.component';
 import { UsuarioResolverService } from './usuario/usuario-resolver.service';
 import { SalaComponent } from './sala/sala.component';
+import { FilmeComponent } from './filme/filme.component';
+import { SessaoComponent } from './sessao/sessao.component';
+import { IngressoComponent } from './ingresso/ingresso.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'cinemas', component: CinemaComponent, resolve: {cinemas: CinemaResolverService} },
-  { path: 'usuarios', component: UsuarioComponent, resolve: {usuarios: UsuarioResolverService}},
-  { path: 'salas', component: SalaComponent, resolve: {cinemas: CinemaResolverService} }
+  { path: 'admin', component: HomeComponent },
+  { path: 'admin/home', component: HomeComponent },
+  { path: 'admin/cinemas', component: CinemaComponent, resolve: {cinemas: CinemaResolverService} },
+  { path: 'admin/usuarios', component: UsuarioComponent, resolve: {usuarios: UsuarioResolverService}},
+  { path: 'admin/salas', component: SalaComponent, resolve: {cinemas: CinemaResolverService} },
+  { path: 'admin/filmes', component: FilmeComponent },
+  { path: 'admin/sessoes', component: SessaoComponent, resolve: {cinemas: CinemaResolverService} },
+  { path: 'admin/ingressos', component: IngressoComponent },
 ];
 
 @NgModule({

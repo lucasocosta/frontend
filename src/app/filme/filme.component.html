@@ -1,0 +1,69 @@
+<button class="btn btn-outline" (click)="adicionarNovo()">Adicionar</button>
+
+<clr-datagrid>
+    <clr-dg-column>ID</clr-dg-column>
+    <clr-dg-column>Nome</clr-dg-column>
+    <clr-dg-column>Usuario</clr-dg-column>
+
+    <clr-dg-row *ngFor="let filme of filmes">
+    <clr-dg-action-overflow>
+        <button class="action-item" (click)="editar(filme)">Editar</button>
+        <button class="action-item" (click)="remover(filme)">Remover</button>
+    </clr-dg-action-overflow>
+        
+        <clr-dg-cell>{{filme.idfilme}}</clr-dg-cell>
+        <clr-dg-cell>{{filme.nome}}</clr-dg-cell>
+        <clr-dg-cell>{{filme.idusuario}}</clr-dg-cell>
+        <clr-dg-row-detail *clrIfExpanded class="action-item">
+            <table class="table" class="table table-compact">
+                <thead>
+                    <tr>
+                        <th>Cartaz</th><th>Sinopse</th><th>Atores</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src={{filme.cartaz}} alt={{filme.nome}} width="100" height="150"></td>
+                        <td>{{filme.sinopse}}</td>
+                        <td>{{filme.atores}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </clr-dg-row-detail>
+    </clr-dg-row>
+
+    <clr-dg-footer>{{filmes.length}} filmes</clr-dg-footer>
+</clr-datagrid>
+
+<clr-modal [(clrModalOpen)]="basic" [clrModalSize]="'md'">
+    <h3 class="modal-title">Adicionar Filme</h3>
+    <div class="modal-body">
+        <form clrForm>
+            <clr-input-container>
+                <label>Nome</label>
+                <input clrInput placeholder="Nome" name="nome" [(ngModel)]="novoModal.nome" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>Sinopse</label>
+                <input clrInput placeholder="Sinopse" name="sinopse" [(ngModel)]="novoModal.sinopse" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>Cartaz</label>
+                <input clrInput placeholder="Cartaz" name="cartaz" [(ngModel)]="novoModal.cartaz" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>ID Usuario</label>
+                <input clrInput placeholder="Usuario" name="idusuario" [(ngModel)]="novoModal.idusuario" />
+            </clr-input-container>
+            <clr-input-container>
+                <label>Atores</label>
+                <input clrInput placeholder="Atores" name="atores" [(ngModel)]="novoModal.atores" />
+            </clr-input-container>
+            
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="cancelar()">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="salvar()">Salvar</button>
+    </div>
+</clr-modal>

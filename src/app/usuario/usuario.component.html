@@ -24,7 +24,7 @@
         <!-- <clr-dg-cell>{{usuario.idendereco}}</clr-dg-cell> -->
         <clr-dg-cell>{{usuario.tipo}}</clr-dg-cell>
         <clr-dg-cell>{{usuario.permissao}}</clr-dg-cell>
-        <clr-dg-cell>{{usuario.data_nasc | date}}</clr-dg-cell>
+        <clr-dg-cell>{{usuario.data_nasc | date: 'dd/MM/yyyy'}}</clr-dg-cell>
         <clr-dg-cell>{{usuario.email}}</clr-dg-cell>
         <clr-dg-row-detail *clrIfExpanded class="action-item" (click)="recuperaEndereco(usuario)">
             Endereço: {{usuario.endereco.logradouro}}, {{usuario.endereco.numero}}, 

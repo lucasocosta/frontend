@@ -1,0 +1,71 @@
+
+<clr-select-container>
+        <label>Escolha o Cinema</label>
+        <select clrSelect name="options" (change)="selecionarSala()" [(ngModel)]="options">
+        <option  *ngFor="let cinema of cinemas" value= {{cinema.idcinemas}} >{{cinema.nome_fantasia}}</option>
+        </select>
+</clr-select-container>
+    
+    <br><br>
+    
+    <button class="btn btn-outline" (click)="adicionarNovo()">Adicionar</button>
+    
+    <clr-datagrid>
+        <clr-dg-column>ID</clr-dg-column>
+        <clr-dg-column>Filme</clr-dg-column>
+        <clr-dg-column>Hora Início</clr-dg-column>
+        <clr-dg-column>Hora Fim</clr-dg-column>
+        <clr-dg-column>Sala</clr-dg-column>
+        <clr-dg-column>Preço</clr-dg-column>
+    
+        <clr-dg-row *ngFor="let sessao of sessoes">
+        <clr-dg-action-overflow>
+            <button class="action-item" (click)="editar(sessao)">Editar</button>
+            <button class="action-item" (click)="remover(sessao)">Remover</button>
+        </clr-dg-action-overflow>
+            
+            <clr-dg-cell>{{sessao.idsessao}}</clr-dg-cell>
+            <clr-dg-cell>{{sessao.idfilme}}</clr-dg-cell>
+            <clr-dg-cell>{{sessao.horainicio}}</clr-dg-cell>
+            <clr-dg-cell>{{sessao.horafim}}</clr-dg-cell>
+            <clr-dg-cell>{{sessao.idsala}}</clr-dg-cell>
+            <clr-dg-cell>{{sessao.preco}}</clr-dg-cell>
+        </clr-dg-row>
+    
+        <clr-dg-footer>{{sessoes.length}} sessoes</clr-dg-footer>
+    </clr-datagrid>
+    
+    <clr-modal [(clrModalOpen)]="basic" [clrModalSize]="'md'">
+        <h3 class="modal-title">Adicionar Sessão</h3>
+        <div class="modal-body">
+            <form clrForm>
+                <clr-input-container>
+                    <label>Filme</label>
+                    <input clrInput placeholder="Filme" name="filme" [(ngModel)]="novoModal.idfilme" />
+                </clr-input-container>
+                <clr-select-container>
+                    <label>Escolha a Sala</label>
+                    <select clrSelect name="options" [(ngModel)]="novoModal.idsala">
+                    <option  *ngFor="let sala of salas" value= {{sala.idsala}} >{{sala.nome}}</option>
+                    </select>
+                </clr-select-container>
+
+                <clr-input-container>
+                    <label>Início</label>
+                    <input clrInput placeholder="Inicio" name="inicio" [(ngModel)]="novoModal.horainicio" />
+                </clr-input-container>
+                <clr-input-container>
+                    <label>Fim</label>
+                    <input clrInput placeholder="Fim" name="fim" [(ngModel)]="novoModal.horafim" />
+                </clr-input-container>
+                <clr-input-container>
+                    <label>Preço</label>
+                    <input clrInput placeholder="Preço" name="preco" [(ngModel)]="novoModal.preco" />
+                </clr-input-container>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline" (click)="cancelar()">Cancelar</button>
+            <button type="button" class="btn btn-primary" (click)="salvar()">Salvar</button>
+        </div>
+    </clr-modal>

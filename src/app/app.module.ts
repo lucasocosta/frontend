@@ -14,6 +14,9 @@ import { CinemaComponent } from './cinema/cinema.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { HomeComponent } from './home/home.component';
 import { SalaComponent } from './sala/sala.component';
+import { FilmeComponent } from './filme/filme.component';
+import { SessaoComponent } from './sessao/sessao.component';
+import { IngressoComponent } from './ingresso/ingresso.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { SalaComponent } from './sala/sala.component';
     CinemaComponent,
     UsuarioComponent,
     HomeComponent,
-    SalaComponent
+    SalaComponent,
+    FilmeComponent,
+    SessaoComponent,
+    IngressoComponent
   ],
   imports: [
     BrowserModule,

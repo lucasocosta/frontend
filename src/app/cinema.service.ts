@@ -9,8 +9,8 @@ import { conditionallyCreateMapObjectLiteral } from '@angular/compiler/src/rende
 })
 export class CinemaService {
 
-  //private host = "localhost";
-  private host = "192.168.11.6"
+  private host = "localhost";
+  //private host = "192.168.11.6"
 
   constructor(private http: HttpClient) { }
 
