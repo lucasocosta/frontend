@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
-import { UsuarioService } from '../usuario.service';
+import { UsuarioService } from '../../services/usuario.service';
+import { Usuario, Endereco } from 'src/app/models/modelo';
 
 @Component({
   selector: 'app-usuario',
@@ -129,51 +130,5 @@ export class UsuarioComponent implements OnInit {
     this.novoModal = new Usuario();
     this.basic = false;
     
-  }
-}
-
-export class Usuario {
-  idusuario: number;
-  nome: string;
-  senha: string;
-  tipo: number;
-  permissao: number;
-  cpf: string;
-  idendereco: number;
-  data_nasc: Date;
-  email: string;
-  endereco: Endereco;
-
-  constructor() {
-    this.nome = '';
-    this.senha = '';
-    this.cpf = '';
-    this.tipo = 0;
-    this.permissao = 0;
-    this.email = '';
-    this.idendereco = null;
-    this.data_nasc= new Date();
-    this.endereco = new Endereco();
-  }
-}
-export class Endereco {
-  idendereco: number;
-  cep: string;
-  uf: string;
-  cidade: string;
-  bairro: string;
-  logradouro: string;
-  numero: number;
-  complemento: string;
-
-  constructor() {
-    this.idendereco=null;
-    this.cep = '';
-    this.uf = '';
-    this.cidade = '';
-    this.bairro = '';
-    this.logradouro = '';
-    this.numero = null;
-    this.complemento = '';
   }
 }

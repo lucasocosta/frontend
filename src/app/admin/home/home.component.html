@@ -1,0 +1,29 @@
+
+<clr-main-container>
+    <clr-header>
+    <div class="branding">
+      <a routerLink="/admin/home" routerLinkActive="active" class="nav-link nav-text">
+           <!-- <clr-icon shape="logo_icon"></clr-icon>-->
+            <span class="title">Cinema Independente</span>
+        </a>
+    </div>
+    <div class="header-nav" [clr-nav-level]="1">
+      <a routerLink="/admin/home/cinemas" routerLinkActive="active" class="nav-link nav-text">Cinemas</a>
+      <a routerLink="/admin/home/usuarios" routerLinkActive="active" class="nav-link nav-text">Usuarios</a>
+      <a routerLink="/admin/home/salas" routerLinkActive="active" class="nav-link nav-text">Salas</a>
+      <a routerLink="/admin/home/filmes" routerLinkActive="active" class="nav-link nav-text">Filmes</a>  
+      <a routerLink="/admin/home/sessoes" routerLinkActive="active" class="nav-link nav-text">Sessões</a>
+      <a routerLink="/admin/home/ingressos" routerLinkActive="active" class="nav-link nav-text">Ingressos</a>        
+    </div>
+    <div class="header-actions">
+        <a class="nav-link nav-text" (click)="logout()">
+            Log Out
+        </a>
+    </div>
+  </clr-header>
+  <div class="content-container">
+      <main class="content-area">
+        <router-outlet></router-outlet>
+      </main>
+  </div>
+</clr-main-container>

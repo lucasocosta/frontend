@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { SalaService } from '../sala.service';
+import { SalaService } from '../../services/sala.service';
 import { ActivatedRoute} from '@angular/router';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
+import { Cinema } from 'src/app/models/cinema_sem_endereco';
+import { Sala } from 'src/app/models/modelo';
 
 
 @Component({
@@ -110,48 +112,3 @@ export class SalaComponent implements OnInit {
   }
 }
 
-export class Sala {
-  idsala: number;
-  nome: string;
-  idcinema: number;
-  fileiras: number;
-  poltronas: number;
-
-  constructor() {
-    this.nome = '';
-    this.idcinema = 0;
-    this.fileiras = 0;
-    this.poltronas = 0;
-  }
-}
-export class Cinema {
-  idcinemas: number;
-  nome: string;
-  nome_fantasia: string;
-  cnpj: string;
-  idendereco: number;
-  avaliacao: number;
-  email: string;
-
-  constructor() {
-    this.nome = '';
-    this.nome_fantasia = '';
-    this.cnpj = '';
-    this.avaliacao = 0;
-    this.email = '';
-    this.idendereco = null;
-  }
-}
-
-export class Cadeira {
-  idcadeira: number;
-  fileira: string;
-  cadeira: number;
-  idsala: number;
-
-  constructor() {
-    this.fileira = '';
-    this.cadeira = 0;
-    this.idsala = 0;
-  }
-}

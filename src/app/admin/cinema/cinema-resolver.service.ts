@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import {Cinema, Endereco} from 'src/app/cinema/cinema.component';
+import {Cinema, Endereco} from 'src/app/models/modelo';
 import {Observable} from 'rxjs';
-import { CinemaService } from '../cinema.service';
+import { CinemaService } from '../../services/cinema.service';
 
 @Injectable({
   providedIn: 'root'

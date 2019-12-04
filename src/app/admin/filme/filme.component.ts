@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FilmeService } from '../filme.service';
+import { FilmeService } from '../../services/filme.service';
 import { ActivatedRoute} from '@angular/router';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
+import { Filme } from 'src/app/models/modelo';
 
 
 @Component({
@@ -88,19 +89,3 @@ export class FilmeComponent implements OnInit {
   }
 }
 
-export class Filme {
-  idfilme: number;
-  nome: string;
-  sinopse: string;
-  cartaz: string;
-  idusuario: number;
-  atores: string;
-
-  constructor() {
-    this.nome = '';
-    this.sinopse = '';
-    this.cartaz = '';
-    this.idusuario = 0;
-    this.atores='';
-  }
-}

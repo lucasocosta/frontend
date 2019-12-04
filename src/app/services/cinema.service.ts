@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Usuario, Endereco } from './usuario/usuario.component';
+import { Cinema, Endereco } from '../models/modelo';
 import { Observable } from 'rxjs';
 import { headersToString } from 'selenium-webdriver/http';
 import { conditionallyCreateMapObjectLiteral } from '@angular/compiler/src/render3/view/util';
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export class CinemaService {
 
   private host = "localhost";
   //private host = "192.168.11.6"
@@ -26,8 +26,8 @@ export class UsuarioService {
     return this.http.get<Endereco>("http://"+this.host+":3000/endereco/" + idendereco);
   }
 
-  getUsuarios(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>("http://"+this.host+":3000/usuarios");
+  getCinemas(): Observable<Cinema[]> {
+    return this.http.get<Cinema[]>("http://"+this.host+":3000/cinemas");
   }
 
   adicionarEndereco(endereco: Endereco): Observable<any>
@@ -37,34 +37,33 @@ export class UsuarioService {
   }
 
 
-  adicionar(usuario: Usuario): Observable<any>
+  adicionar(cinema: Cinema): Observable<any>
   {
-    const endereco: Endereco = Object.assign(usuario.endereco)
-    
-    var ans=this.http.post("http://"+this.host+":3000/usuario", usuario);
-    usuario.endereco=endereco;
+    const endereco: Endereco = Object.assign(cinema.endereco)
+    var ans=this.http.post("http://"+this.host+":3000/cinema", cinema);
+    cinema.endereco=endereco;
     return ans;
   }
 
-  getUsuario(idusuario: number): Observable<Usuario>
+  getCinema(idcinemas: number): Observable<Cinema>
   {
-    return this.http.get<Usuario>("http://"+this.host+":3000/usuario/" + idusuario);
+    return this.http.get<Cinema>("http://"+this.host+":3000/cinema/" + idcinemas);
   }
 
-  remover(idusuario: number): Observable<any>
+  remover(idcinemas: number): Observable<any>
   {
-    return this.http.delete("http://"+this.host+":3000/usuario/" + idusuario);
+    return this.http.delete("http://"+this.host+":3000/cinema/" + idcinemas);
   }
 
   removerEndereco(idendereco: number): Observable<any>
   {
     return this.http.delete("http://"+this.host+":3000/endereco/" + idendereco);
   }
-  edit(usuario: Usuario): Observable<any>
+  edit(cinema: Cinema): Observable<any>
   {
-    const endereco: Endereco = Object.assign(usuario.endereco)
-    var ans=this.http.put("http://"+this.host+":3000/usuario/" + usuario.idusuario,usuario);
-    usuario.endereco=endereco;
+    const endereco: Endereco = Object.assign(cinema.endereco)
+    var ans=this.http.put("http://"+this.host+":3000/cinema/" + cinema.idcinemas,cinema);
+    cinema.endereco=endereco;
     return ans;
   }
 

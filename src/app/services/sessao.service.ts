@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Sessao } from './sessao/sessao.component';
+import { Sessao } from '../models/modelo';
 import { Observable } from 'rxjs';
 
 @Injectable({

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Filme } from './filme/filme.component';
+import { Filme } from '../models/modelo';
 import { Observable } from 'rxjs';
 
 @Injectable({

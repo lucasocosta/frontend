@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SalaService } from '../sala.service';
-import { FilmeService } from '../filme.service';
-import { SessaoService } from '../sessao.service';
+import { SalaService } from '../../services/sala.service';
+import { FilmeService } from '../../services/filme.service';
+import { SessaoService } from '../../services/sessao.service';
 import { ActivatedRoute} from '@angular/router';
+import { Cinema } from 'src/app/models/cinema_sem_endereco';
+import { Sessao, Sala } from 'src/app/models/modelo';
 
 
 @Component({
@@ -105,72 +107,5 @@ export class SessaoComponent implements OnInit {
     this.novoModal = new Sessao();
     this.basic = false;
     
-  }
-}
-
-export class Sala {
-  idsala: number;
-  nome: string;
-  idcinema: number;
-  fileiras: number;
-  poltronas: number;
-
-  constructor() {
-    this.nome = '';
-    this.idcinema = 0;
-    this.fileiras = 0;
-    this.poltronas = 0;
-  }
-}
-export class Cinema {
-  idcinemas: number;
-  nome: string;
-  nome_fantasia: string;
-  cnpj: string;
-  idendereco: number;
-  avaliacao: number;
-  email: string;
-
-  constructor() {
-    this.nome = '';
-    this.nome_fantasia = '';
-    this.cnpj = '';
-    this.avaliacao = 0;
-    this.email = '';
-    this.idendereco = null;
-  }
-}
-
-export class Sessao {
-  idsessao: number;
-  idfilme: number;
-  idsala: number;
-  preco: number;
-  horainicio: Date;
-  horafim: Date;
-
-  constructor() {
-    this.idfilme = 0;
-    this.idsala = 0;
-    this.preco = 0;
-    this.horainicio = new Date();
-    this.horafim = new Date();
-  }
-}
-
-export class Filme {
-  idfilme: number;
-  nome: string;
-  sinopse: string;
-  cartaz: string;
-  idusuario: number;
-  atores: string;
-
-  constructor() {
-    this.nome = '';
-    this.sinopse = '';
-    this.cartaz = '';
-    this.idusuario = 0;
-    this.atores='';
   }
 }

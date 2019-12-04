@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Cadeira, Sala } from './sala/sala.component';
+import { Cadeira, Sala } from '../models/modelo';
 import { Observable } from 'rxjs';
 
 @Injectable({
