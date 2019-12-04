@@ -23,7 +23,7 @@
     "@clr/icons": "2.3.1",
     "@clr/ui": "2.3.1",
     "@webcomponents/custom-elements": "^1.0.0",
-    "bootstrap": "4.1.1",
+    "bootstrap": "4.3.1",
     "ngx-bootstrap": "^5.2.0",
     "ngx-bootstrap-navbar": "0.0.4",
     "rxjs": "~6.4.0",
