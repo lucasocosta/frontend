@@ -20,12 +20,15 @@
     "@angular/platform-browser-dynamic": "~8.2.13",
     "@angular/router": "~8.2.13",
     "@clr/angular": "^2.3.1",
+    "@clr/icons": "2.3.1",
+    "@clr/ui": "2.3.1",
+    "@webcomponents/custom-elements": "^1.0.0",
+    "bootstrap": "4.1.1",
+    "ngx-bootstrap": "^5.2.0",
+    "ngx-bootstrap-navbar": "0.0.4",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1",
-    "@clr/ui": "2.3.1",
-    "@clr/icons": "2.3.1",
-    "@webcomponents/custom-elements": "^1.0.0"
+    "zone.js": "~0.9.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.18",

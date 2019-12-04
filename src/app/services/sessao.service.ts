@@ -15,26 +15,33 @@ export class SessaoService {
 
   
   getSessoes(idcinema: number): Observable<Sessao[]> {
-    return this.http.get<Sessao[]>("http://"+this.host+":3000/sessoes/" + idcinema);
+    return this.http.get<Sessao[]>("http://"+this.host+":3000/sessoes/" + idcinema, this.header());
   }
 
   adicionarSessao(sessao: Sessao): Observable<any>
   {
-    return this.http.post("http://"+this.host+":3000/sessao", sessao);
+    return this.http.post("http://"+this.host+":3000/sessao", sessao, this.header());
   }
 
   getSessao(idsessao: number): Observable<Sessao>
   {
-    return this.http.get<Sessao>("http://"+this.host+":3000/sessao/" + idsessao);
+    return this.http.get<Sessao>("http://"+this.host+":3000/sessao/" + idsessao, this.header());
   }
 
   remover(idsessao: number): Observable<any>
   {
-    return this.http.delete("http://"+this.host+":3000/sessao/" + idsessao);
+    return this.http.delete("http://"+this.host+":3000/sessao/" + idsessao, this.header());
   }
 
   edit(sessao: Sessao): Observable<any>
   {
-    return this.http.put("http://"+this.host+":3000/sessao/" + sessao.idsessao,sessao);
+    return this.http.put("http://"+this.host+":3000/sessao/" + sessao.idsessao,sessao, this.header());
+  }
+  header() {
+    return {
+      headers: new HttpHeaders({'Content-Type': 'application/json',
+        'x-access-token': localStorage.getItem('TOKEN')
+      })
+    };
   }
 }

@@ -11,9 +11,13 @@ import { SessaoComponent } from './admin/sessao/sessao.component';
 import { IngressoComponent } from './admin/ingresso/ingresso.component';
 import { AuthComponent } from './admin/auth/auth.component';
 import { AuthGuard } from './admin/auth/auth.guard';
+import { PrincipalComponent } from './site/principal/principal.component';
+
 
 
 const routes: Routes = [
+  {path: '', component: PrincipalComponent},
+  {path: 'home', component: PrincipalComponent},
   { path: 'admin', component: AuthComponent },
   { path: 'admin/home', component: HomeComponent, canActivate: [AuthGuard],
   children: [

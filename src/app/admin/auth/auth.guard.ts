@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 
         if (localStorage.getItem('TOKEN') === null) {
-            this.router.navigate(['/admin/auth']);
+            this.router.navigate(['/admin']);
             return false;                        
         }
 

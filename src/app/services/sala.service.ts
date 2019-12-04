@@ -15,12 +15,12 @@ export class SalaService {
 
   
   getSalas(idcinema: number): Observable<Sala[]> {
-    return this.http.get<Sala[]>("http://"+this.host+":3000/salas/" + idcinema);
+    return this.http.get<Sala[]>("http://"+this.host+":3000/salas/" + idcinema, this.header());
   }
 
   adicionar(sala: Sala): Observable<any>
   {
-    return this.http.post("http://"+this.host+":3000/sala", sala);
+    return this.http.post("http://"+this.host+":3000/sala", sala, this.header());
   }
 
   adicionarCadeiras(sala: Sala)
@@ -33,24 +33,31 @@ export class SalaService {
         cadeira.idsala=sala.idsala;
         cadeira.fileira= ""+String.fromCharCode(97 + i);
         cadeira.cadeira=j;
-        this.http.post("http://"+this.host+":3000/cadeira", cadeira).subscribe();
+        this.http.post("http://"+this.host+":3000/cadeira", cadeira, this.header()).subscribe();
       }
     }
   }
 
   getSala(idsala: number): Observable<Sala>
   {
-    return this.http.get<Sala>("http://"+this.host+":3000/sala/" + idsala);
+    return this.http.get<Sala>("http://"+this.host+":3000/sala/" + idsala, this.header());
   }
 
   remover(idsala: number): Observable<any>
   {
-    this.http.delete("http://"+this.host+":3000/cadeiras/" + idsala).subscribe(); //remove todas as cadeiras da sala
-    return this.http.delete("http://"+this.host+":3000/sala/" + idsala);
+    this.http.delete("http://"+this.host+":3000/cadeiras/" + idsala, this.header()).subscribe(); //remove todas as cadeiras da sala
+    return this.http.delete("http://"+this.host+":3000/sala/" + idsala, this.header());
   }
 
   edit(sala: Sala): Observable<any>
   {
-    return this.http.put("http://"+this.host+":3000/sala/" + sala.idsala,sala);
+    return this.http.put("http://"+this.host+":3000/sala/" + sala.idsala,sala, this.header());
+  }
+  header() {
+    return {
+      headers: new HttpHeaders({'Content-Type': 'application/json',
+        'x-access-token': localStorage.getItem('TOKEN')
+      })
+    };
   }
 }

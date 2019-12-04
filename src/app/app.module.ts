@@ -4,8 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { ClarityModule } from '@clr/angular';
 
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+
+
+
+import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,6 +24,7 @@ import { SessaoComponent } from './admin/sessao/sessao.component';
 import { IngressoComponent } from './admin/ingresso/ingresso.component';
 import { AuthComponent } from './admin/auth/auth.component';
 import { AuthGuard } from './admin/auth/auth.guard';
+import { PrincipalComponent } from './site/principal/principal.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +36,8 @@ import { AuthGuard } from './admin/auth/auth.guard';
     FilmeComponent,
     SessaoComponent,
     IngressoComponent,
-    AuthComponent
+    AuthComponent,
+    PrincipalComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +45,9 @@ import { AuthGuard } from './admin/auth/auth.guard';
     ClarityModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CollapseModule.forRoot(),
+    CarouselModule.forRoot()
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
